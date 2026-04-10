@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bicho da Praia — Estrutura Operacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:        #0097a7;
+      --teal-dark:   #006978;
+      --teal-mid:    #00acc1;
+      --teal-light:  #e0f7fa;
+      --teal-border: #b2ebf2;
+      --sand:        #f5a623;
+      --sand-light:  #fff8ed;
+      --sand-border: #fde5b0;
+      --dark:        #1a2332;
+      --mid:         #546e7a;
+      --light:       #f4f7f9;
+      --white:       #ffffff;
+      --border:      #dce6ec;
+      --green:       #2e7d4f;
+      --green-light: #e8f5ee;
+      --green-border:#b2dfcb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 55%, var(--teal-mid) 100%);
+      color: white;
+      padding: 56px 24px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-inner { position: relative; z-index: 2; }
+
+    .paw-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 100px;
+      padding: 5px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .header-sub {
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.75;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p.tagline {
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.88;
+      max-width: 440px;
+      margin: 0 auto 40px;
+    }
+
+    /* Wave SVG */
+    .wave {
+      display: block;
+      width: 100%;
+      margin-bottom: -2px;
+    }
+
+    /* ===================== MAIN ===================== */
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 44px 20px 80px;
+    }
+
+    /* ===================== MANTRAS ===================== */
+    .mantras {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    @media (max-width: 580px) { .mantras { grid-template-columns: 1fr; } }
+
+    .mantra {
+      background: var(--teal-light);
+      border-left: 4px solid var(--teal-mid);
+      border-radius: 12px;
+      padding: 18px 22px;
+    }
+    .mantra .mlabel {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      margin-bottom: 5px;
+    }
+    .mantra p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* ===================== SECTION TITLE ===================== */
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ===================== FUNÇÕES ===================== */
+    .funcoes {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 52px;
+    }
+
+    .funcao-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .funcao-card:hover {
+      box-shadow: 0 6px 24px rgba(0,151,167,0.10);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 640px) {
+      .funcao-card { grid-template-columns: 1fr; }
+    }
+
+    .funcao-left {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      border-right: 1px solid var(--border);
+      background: #fafcfd;
+    }
+    @media (max-width: 640px) {
+      .funcao-left { border-right: none; border-bottom: 1px solid var(--border); background: var(--teal-light); }
+    }
+
+    .funcao-icon { font-size: 26px; margin-bottom: 4px; }
+
+    .funcao-nome {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .funcao-right {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .funcao-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .funcao-desc strong { color: var(--dark); font-weight: 600; }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .step {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 11px;
+      border-radius: 100px;
+      border: 1px solid var(--teal-border);
+      background: var(--teal-light);
+      color: var(--teal-dark);
+    }
+
+    .step.sand {
+      background: var(--sand-light);
+      border-color: var(--sand-border);
+      color: #8a5700;
+    }
+
+    .step.green {
+      background: var(--green-light);
+      border-color: var(--green-border);
+      color: var(--green);
+    }
+
+    /* card em aberto */
+    .funcao-card.aberto {
+      border-style: dashed;
+      border-color: #b0bec5;
+      background: #fafbfc;
+    }
+    .funcao-card.aberto .funcao-left { background: #f4f6f7; }
+    .funcao-card.aberto .funcao-nome { color: #78909c; }
+
+    .tag-aberto {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 100px;
+      background: #eceff1;
+      color: #78909c;
+      border: 1px solid #cfd8dc;
+      margin-top: 2px;
+    }
+
+    /* ===================== ESCALA ===================== */
+    .escala-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 52px;
+    }
+    @media (max-width: 640px) { .escala-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 360px) { .escala-grid { grid-template-columns: 1fr; } }
+
+    .dia-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .dia-header {
+      padding: 9px 6px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--teal-light);
+      border-bottom: 1px solid var(--teal-border);
+      color: var(--teal-dark);
+    }
+    .dia-body {
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .dia-nota {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--mid);
+      font-style: italic;
+    }
+
+    /* ===================== REGRAS ===================== */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 12px;
+      margin-bottom: 52px;
+    }
+
+    .rule-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .rule-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .rule-title { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .rule-desc  { font-size: 12px; color: var(--mid); line-height: 1.55; }
+
+    /* ===================== PRÓXIMOS PASSOS ===================== */
+    .next-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 580px) { .next-grid { grid-template-columns: 1fr; } }
+
+    .next-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .next-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .next-badge.auto    { background: var(--teal-light); color: var(--teal-dark); border: 1px solid var(--teal-border); }
+    .next-badge.process { background: var(--sand-light); color: #8a5700; border: 1px solid var(--sand-border); }
+    .next-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .next-desc  { font-size: 12px; color: var(--mid); line-height: 1.6; }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 12px;
+      color: #90a4ae;
+      border-top: 1px solid var(--border);
+    }
+    footer strong { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="paw-badge">🐾 Documento Interno da Equipe</div>
+    <h1>Bicho da Praia</h1>
+    <div class="header-sub">Clínica Veterinária · Meia Praia, Itapema SC</div>
+    <p class="tagline">Estrutura operacional, funções e regras da clínica</p>
+  </div>
+  <!-- Wave divider -->
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#f4f7f9"/>
+  </svg>
+</header>
+
+<main>
+
+  <!-- MANTRAS -->
+  <div class="mantras">
+    <div class="mantra">
+      <div class="mlabel">Regra #1</div>
+      <p>"Se não está no sistema, não aconteceu."</p>
+    </div>
+    <div class="mantra">
+      <div class="mlabel">Regra #2</div>
+      <p>"A clínica não pode mais funcionar por memória. Precisa funcionar por processo."</p>
+    </div>
+  </div>
+
+  <!-- FUNÇÕES -->
+  <div class="section-title">Funções e Áreas de Responsabilidade</div>
+  <div class="funcoes">
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🏠</div>
+        <div class="funcao-nome">Recepção e Atendimento</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Atendimento presencial, direcionamento de consultas, lançamento no sistema e organização da agenda.
+        </div>
+        <div class="steps">
+          <span class="step">Cliente chega</span>
+          <span class="step">Lança no sistema</span>
+          <span class="step">Atualiza ficha</span>
+          <span class="step">Chama veterinária / campainha</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">📱</div>
+        <div class="funcao-nome">WhatsApp</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Atendimento e triagem de mensagens ao longo do dia. Ao fim do turno: <strong>arquivar o que foi resolvido</strong> e <strong>marcar como não lido</strong> o que é prioridade para o próximo dia.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🧾</div>
+        <div class="funcao-nome">Nota Fiscal</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Emissão <strong>diária, sem acúmulo</strong>. Conferência semanal para garantir que nenhum atendimento ficou sem nota. Nenhum mês pode fechar com nota em aberto.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">💳</div>
+        <div class="funcao-nome">Cobrança</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          <strong>Cliente novo:</strong> cobrar antes de avançar o procedimento.<br/>
+          <strong>Cliente antigo:</strong> manter flexibilidade, mas com controle e sem acúmulo.<br/>
+          <strong>Planos:</strong> não renovar com débito em aberto.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🔬</div>
+        <div class="funcao-nome">Gestão de Exames</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          O exame só está <strong>concluído</strong> quando as 3 etapas forem cumpridas:
+        </div>
+        <div class="steps">
+          <span class="step">1. Conferir se chegou</span>
+          <span class="step">2. Registrar e anexar na ficha</span>
+          <span class="step">3. Avisar o tutor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">💉</div>
+        <div class="funcao-nome">Estoque Crítico<br/>(anestesia e oxigênio)</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Conferir antes de toda cirurgia. Solicitar reposição <strong>antes de atingir o mínimo</strong>. Nunca entrar em cirurgia sem confirmar oxigênio e anestesia disponíveis.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">📦</div>
+        <div class="funcao-nome">Estoque Geral e Insumos</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Monitorar consumo de materiais, registrar quando acabar e acionar reposição antes de faltar. Conferência periódica de validade e armazenamento correto.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🧹</div>
+        <div class="funcao-nome">Organização e Limpeza</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Após cada atendimento: higienizar mesa, termômetro, retirar lixo e deixar o ambiente pronto para o próximo paciente. Aplica-se a todos os consultórios, sala de cirurgia e bancada PET.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">✅</div>
+        <div class="funcao-nome">Checklist de Abertura da Clínica</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Todo dia ao abrir: conferir consultórios, temperatura da geladeira, materiais (seringa, agulha, insumos). Se faltar algo, acionar reposição <strong>antes de começar os atendimentos</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🐾</div>
+        <div class="funcao-nome">Banho e Tosa</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Todo serviço deve ser lançado no sistema. Conferência quinzenal para garantir que nenhum serviço ficou sem registro. Avisar tutor quando o pet estiver pronto.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🏥</div>
+        <div class="funcao-nome">Internados</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Cuidados e monitoramento dos pacientes internados. Qualquer alteração relevante deve ser comunicada à veterinária de plantão <strong>imediatamente</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card">
+      <div class="funcao-left">
+        <div class="funcao-icon">🗂️</div>
+        <div class="funcao-nome">Atualização de Fichas</div>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Revisão mensal na última semana do mês, separada por dia da semana. Conferir: cadastro, plano, valor atualizado, histórico clínico, vacina, vermífugo e status do animal.
+        </div>
+      </div>
+    </div>
+
+    <div class="funcao-card aberto">
+      <div class="funcao-left">
+        <div class="funcao-icon">📋</div>
+        <div class="funcao-nome">Follow-up dos Pacientes da Dra. Mariana</div>
+        <span class="tag-aberto">A definir</span>
+      </div>
+      <div class="funcao-right">
+        <div class="funcao-desc">
+          Puxar exame, atualizar ficha, lembrar retorno e preparar o terreno para a resposta da Dra. O vínculo com o tutor continua dela — o objetivo é tirar o <strong>peso operacional</strong>, não o vínculo.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /funcoes -->
+
+  <!-- ESCALA DE TURNO -->
+  <div class="section-title">Escala de Plantão — Recepção / Cobrança Noturna</div>
+  <div class="escala-grid">
+    <div class="dia-card">
+      <div class="dia-header">Segunda</div>
+      <div class="dia-body">
+        <span>Recepção noturna</span>
+        <span class="dia-nota">fixo</span>
+      </div>
+    </div>
+    <div class="dia-card">
+      <div class="dia-header">Terça</div>
+      <div class="dia-body">
+        <span>Recepção noturna</span>
+        <span class="dia-nota">fixo</span>
+      </div>
+    </div>
+    <div class="dia-card">
+      <div class="dia-header">Quarta</div>
+      <div class="dia-body">
+        <span>Recepção noturna</span>
+        <span class="dia-nota">fixo</span>
+      </div>
+    </div>
+    <div class="dia-card">
+      <div class="dia-header">Quinta</div>
+      <div class="dia-body">
+        <span>Recepção noturna</span>
+        <span class="dia-nota">reveza</span>
+      </div>
+    </div>
+    <div class="dia-card">
+      <div class="dia-header">Sexta</div>
+      <div class="dia-body">
+        <span>Recepção noturna</span>
+        <span class="dia-nota">reveza</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGRAS OPERACIONAIS -->
+  <div class="section-title">Regras Operacionais da Clínica</div>
+  <div class="rules-grid">
+
+    <div class="rule-card">
+      <span class="rule-icon">📋</span>
+      <div>
+        <div class="rule-title">Lançamento no sistema é obrigatório</div>
+        <div class="rule-desc">Cliente chegou? Lança imediatamente. Sem lançamento, o atendimento não existe.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-icon">✅</span>
+      <div>
+        <div class="rule-title">OK no grupo = tarefa recebida</div>
+        <div class="rule-desc">Recebeu uma tarefa no grupo interno? Responde "OK". Sem OK, ninguém sabe se a tarefa foi recebida.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-icon">💬</span>
+      <div>
+        <div class="rule-title">Grupo interno só quando necessário</div>
+        <div class="rule-desc">Usar para: animal sem tutor, banho e tosa, transporte, comunicação entre setores. Cliente com tutor presente = campainha ou chamada direta.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-icon">🔬</span>
+      <div>
+        <div class="rule-title">Exame tem 3 etapas obrigatórias</div>
+        <div class="rule-desc">Registrar + anexar na ficha + avisar o tutor. Faltou qualquer uma: o exame não está concluído.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-icon">💳</span>
+      <div>
+        <div class="rule-title">Cobrança antes do procedimento</div>
+        <div class="rule-desc">Cliente novo: cobrar antes de avançar. Plano não é renovado com débito em aberto.</div>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <span class="rule-icon">🗂️</span>
+      <div>
+        <div class="rule-title">Revisão de fichas — última semana do mês</div>
+        <div class="rule-desc">Separada por dia da semana: revisar cadastro, plano, histórico clínico, vacina, vermífugo e status do animal.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <div class="section-title">Próximos Passos</div>
+  <div class="next-grid">
+
+    <div class="next-card">
+      <span class="next-badge auto">Automação</span>
+      <div class="next-title">Agente de IA para WhatsApp</div>
+      <div class="next-desc">Automatizar triagem de mensagens repetidas (preço, horário, dúvidas simples) para liberar tempo para atendimento presencial e tarefas administrativas.</div>
+    </div>
+
+    <div class="next-card">
+      <span class="next-badge auto">Automação</span>
+      <div class="next-title">Lembretes automáticos — vacina, vermífugo e antipulgas</div>
+      <div class="next-desc">Substituir os lembretes manuais semanais por envio automatizado, garantindo consistência e liberando tempo da recepção.</div>
+    </div>
+
+    <div class="next-card">
+      <span class="next-badge process">Processo</span>
+      <div class="next-title">Definir dono do follow-up da Dra. Mariana</div>
+      <div class="next-desc">Alinhar com a Dra. quem ficará responsável por puxar exame, atualizar ficha, lembrar retorno e preparar o contato com o tutor.</div>
+    </div>
+
+    <div class="next-card">
+      <span class="next-badge process">Processo</span>
+      <div class="next-title">Check-in quinzenal com a equipe</div>
+      <div class="next-desc">Reunião rápida a cada 15 dias para ajustar processos, identificar gargalos novos e manter a cultura de execução viva.</div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <strong>Bicho da Praia</strong> · Clínica Veterinária · Meia Praia, Itapema SC · Documento interno da equipe · 2026
+</footer>
+
+</body>
+</html>
