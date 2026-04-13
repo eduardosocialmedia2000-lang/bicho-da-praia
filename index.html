@@ -235,6 +235,40 @@
       color: var(--green);
     }
 
+    /* chips de pessoa */
+    .pessoa-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px 3px 5px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      margin-top: 2px;
+      width: fit-content;
+    }
+    .pessoa-chip .ini {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800; flex-shrink: 0;
+    }
+    .chip-gabi     { background: #e8f5ee; color: #1a7a4a; border-color: #c3e6d4; }
+    .chip-gabi .ini     { background: #c3e6d4; color: #1a7a4a; }
+    .chip-vitoria  { background: #ebf4ff; color: #2b6cb0; border-color: #bee3f8; }
+    .chip-vitoria .ini  { background: #bee3f8; color: #2b6cb0; }
+    .chip-emily    { background: #f5f0ff; color: #6b46c1; border-color: #d6bcfa; }
+    .chip-emily .ini    { background: #d6bcfa; color: #6b46c1; }
+    .chip-carolina { background: #fff5f5; color: #c53030; border-color: #fed7d7; }
+    .chip-carolina .ini { background: #fed7d7; color: #c53030; }
+    .chip-laura    { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+    .chip-laura .ini    { background: #fde68a; color: #b45309; }
+    .chip-mariana  { background: #fff0e0; color: #c05621; border-color: #fed7aa; }
+    .chip-mariana .ini  { background: #fed7aa; color: #c05621; }
+    .chip-indefinido { background: #f1f5f9; color: #718096; border-color: #e2e8f0; font-style: italic; font-weight: 500; }
+    .chip-indefinido .ini { background: #e2e8f0; color: #718096; }
+
     /* card em aberto */
     .funcao-card.aberto {
       border-style: dashed;
@@ -509,6 +543,8 @@
       <div class="funcao-left">
         <div class="funcao-icon">🏠</div>
         <div class="funcao-nome">Recepção e Atendimento</div>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carol (apoio)</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -527,6 +563,8 @@
       <div class="funcao-left">
         <div class="funcao-icon">📱</div>
         <div class="funcao-nome">WhatsApp</div>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
+        <span class="pessoa-chip chip-vitoria"><span class="ini">V</span>Vitória (apoio manhã)</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -539,6 +577,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">🧾</div>
         <div class="funcao-nome">Nota Fiscal</div>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -551,6 +590,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">💳</div>
         <div class="funcao-nome">Cobrança</div>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -565,6 +605,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">🔬</div>
         <div class="funcao-nome">Gestão de Exames</div>
+        <span class="pessoa-chip chip-emily"><span class="ini">E</span>Emily</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -585,6 +626,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">💉</div>
         <div class="funcao-nome">Estoque Crítico<br/>(anestesia e oxigênio)</div>
+        <span class="pessoa-chip chip-vitoria"><span class="ini">V</span>Vitória</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -597,6 +639,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">📦</div>
         <div class="funcao-nome">Estoque Geral e Insumos</div>
+        <span class="pessoa-chip chip-emily"><span class="ini">E</span>Emily</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -609,6 +652,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">🧹</div>
         <div class="funcao-nome">Organização e Limpeza</div>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carolina</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -621,6 +665,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">✅</div>
         <div class="funcao-nome">Checklist de Abertura da Clínica</div>
+        <span class="pessoa-chip chip-laura"><span class="ini">L</span>Laura</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -633,6 +678,8 @@
       <div class="funcao-left">
         <div class="funcao-icon">🐾</div>
         <div class="funcao-nome">Banho e Tosa</div>
+        <span class="pessoa-chip chip-laura"><span class="ini">L</span>Laura</span>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carol (sob demanda)</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -645,6 +692,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">🏥</div>
         <div class="funcao-nome">Internados</div>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carolina</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -657,6 +705,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">🗂️</div>
         <div class="funcao-nome">Atualização de Fichas</div>
+        <span class="pessoa-chip chip-emily"><span class="ini">E</span>Emily</span>
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
@@ -669,6 +718,7 @@
       <div class="funcao-left">
         <div class="funcao-icon">👩‍⚕️</div>
         <div class="funcao-nome">Pacientes da Dra. Mariana — Fluxo Obrigatório</div>
+        <span class="pessoa-chip chip-indefinido"><span class="ini">?</span>A definir c/ a Dra.</span>
       </div>
       <div class="funcao-right">
         <div class="subfluxo">
@@ -720,35 +770,37 @@
     <div class="dia-card">
       <div class="dia-header">Segunda</div>
       <div class="dia-body">
-        <span>Recepção noturna</span>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
         <span class="dia-nota">fixo</span>
       </div>
     </div>
     <div class="dia-card">
       <div class="dia-header">Terça</div>
       <div class="dia-body">
-        <span>Recepção noturna</span>
+        <span class="pessoa-chip chip-mariana"><span class="ini">M</span>Mariana</span>
         <span class="dia-nota">fixo</span>
       </div>
     </div>
     <div class="dia-card">
       <div class="dia-header">Quarta</div>
       <div class="dia-body">
-        <span>Recepção noturna</span>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carolina</span>
         <span class="dia-nota">fixo</span>
       </div>
     </div>
     <div class="dia-card">
       <div class="dia-header">Quinta</div>
       <div class="dia-body">
-        <span>Recepção noturna</span>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carolina</span>
         <span class="dia-nota">reveza</span>
       </div>
     </div>
     <div class="dia-card">
       <div class="dia-header">Sexta</div>
       <div class="dia-body">
-        <span>Recepção noturna</span>
+        <span class="pessoa-chip chip-carolina"><span class="ini">C</span>Carolina</span>
+        <span class="pessoa-chip chip-gabi"><span class="ini">G</span>Gabi</span>
         <span class="dia-nota">reveza</span>
       </div>
     </div>
