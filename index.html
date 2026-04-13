@@ -352,6 +352,114 @@
     .next-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
     .next-desc  { font-size: 12px; color: var(--mid); line-height: 1.6; }
 
+    /* ===================== ALERTA CRÍTICO ===================== */
+    .alerta {
+      background: #fff8e8;
+      border: 1.5px solid #F9B233;
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    .alerta-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .alerta-title { font-size: 14px; font-weight: 700; color: #7a4a00; margin-bottom: 4px; }
+    .alerta-desc  { font-size: 13px; color: #8a5f00; line-height: 1.6; }
+
+    /* ===================== CHECKLIST ===================== */
+    .checklist-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 52px;
+    }
+    .checklist-header {
+      background: var(--teal-light);
+      border-bottom: 1px solid var(--teal-border);
+      padding: 14px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal-dark);
+    }
+    .checklist-body { padding: 8px 0; }
+    .cl-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding: 14px 22px 6px;
+    }
+    .cl-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 22px;
+      border-bottom: 1px solid #f0f4f6;
+      font-size: 13px;
+      color: var(--dark);
+    }
+    .cl-item:last-child { border-bottom: none; }
+    .cl-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid var(--teal-border);
+      flex-shrink: 0;
+      background: white;
+    }
+    .cl-item.destaque { background: #fff8e8; }
+    .cl-item.destaque .cl-box { border-color: #F9B233; }
+    .cl-item strong { font-weight: 600; }
+
+    /* subfluxo mariana */
+    .subfluxo {
+      background: #fef9f0;
+      border: 1.5px solid #F9B233;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .subfluxo-header {
+      background: #F9B233;
+      padding: 14px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subfluxo-body {
+      padding: 16px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .subfluxo-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    .subfluxo-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #F9B233;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
     /* ===================== FOOTER ===================== */
     footer {
       text-align: center;
@@ -460,12 +568,15 @@
       </div>
       <div class="funcao-right">
         <div class="funcao-desc">
-          O exame só está <strong>concluído</strong> quando as 3 etapas forem cumpridas:
+          <strong>Exame visualizado não significa exame concluído.</strong> O exame só está concluído quando todas as etapas forem cumpridas:
         </div>
         <div class="steps">
           <span class="step">1. Conferir se chegou</span>
-          <span class="step">2. Registrar e anexar na ficha</span>
-          <span class="step">3. Avisar o tutor</span>
+          <span class="step">2. Identificar de quem é o paciente</span>
+          <span class="step">3. Registrar no sistema</span>
+          <span class="step">4. Anexar na ficha</span>
+          <span class="step sand">5. Se paciente da Mariana → avisar a Dra.</span>
+          <span class="step">6. Avisar o tutor</span>
         </div>
       </div>
     </div>
@@ -554,20 +665,54 @@
       </div>
     </div>
 
-    <div class="funcao-card aberto">
+    <div class="funcao-card">
       <div class="funcao-left">
-        <div class="funcao-icon">📋</div>
-        <div class="funcao-nome">Follow-up dos Pacientes da Dra. Mariana</div>
-        <span class="tag-aberto">A definir</span>
+        <div class="funcao-icon">👩‍⚕️</div>
+        <div class="funcao-nome">Pacientes da Dra. Mariana — Fluxo Obrigatório</div>
       </div>
       <div class="funcao-right">
-        <div class="funcao-desc">
-          Puxar exame, atualizar ficha, lembrar retorno e preparar o terreno para a resposta da Dra. O vínculo com o tutor continua dela — o objetivo é tirar o <strong>peso operacional</strong>, não o vínculo.
+        <div class="subfluxo">
+          <div class="subfluxo-header">⚠️ Quando o paciente for da Dra. Mariana</div>
+          <div class="subfluxo-body">
+            <div class="subfluxo-step"><span class="subfluxo-num">1</span><span>Exame chega → identificar que é paciente da Dra. Mariana</span></div>
+            <div class="subfluxo-step"><span class="subfluxo-num">2</span><span>Registrar no sistema e anexar na ficha <strong>imediatamente</strong></span></div>
+            <div class="subfluxo-step"><span class="subfluxo-num">3</span><span><strong>Repassar o resultado para a Dra. Mariana</strong> — sem exceção</span></div>
+            <div class="subfluxo-step"><span class="subfluxo-num">4</span><span>Aguardar orientação dela sobre o que comunicar ao tutor</span></div>
+            <div class="subfluxo-step"><span class="subfluxo-num">5</span><span>Avisar o tutor conforme orientação recebida</span></div>
+            <div class="subfluxo-step"><span class="subfluxo-num">6</span><span>Confirmar no grupo interno que as etapas foram concluídas (<strong>"OK — exame da [paciente] encerrado"</strong>)</span></div>
+          </div>
+        </div>
+        <div class="funcao-desc" style="margin-top:10px; font-size:12px;">
+          O vínculo com o tutor continua sendo da Dra. — o objetivo é tirar o <strong>peso operacional</strong>, não o vínculo.
         </div>
       </div>
     </div>
 
   </div><!-- /funcoes -->
+
+  <!-- CHECKLIST DE EXAMES -->
+  <div class="section-title">Checklist Operacional de Exames</div>
+  <div class="checklist-box">
+    <div class="checklist-header">🔬 Preencher a cada exame recebido</div>
+    <div class="checklist-body">
+
+      <div class="cl-group-label">Etapas obrigatórias</div>
+      <div class="cl-item"><div class="cl-box"></div><span>Exame chegou e foi identificado corretamente</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span>Paciente localizado no sistema</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span>Resultado registrado no sistema</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span>Resultado anexado na ficha do paciente</span></div>
+
+      <div class="cl-group-label">Verificação — paciente da Dra. Mariana</div>
+      <div class="cl-item destaque"><div class="cl-box"></div><span><strong>Paciente é da Dra. Mariana?</strong> &nbsp;( ) Sim &nbsp;( ) Não</span></div>
+      <div class="cl-item destaque"><div class="cl-box"></div><span><strong>Se sim: resultado foi repassado para a Dra. Mariana?</strong></span></div>
+      <div class="cl-item destaque"><div class="cl-box"></div><span><strong>Dra. deu orientação sobre o que comunicar ao tutor?</strong></span></div>
+
+      <div class="cl-group-label">Fechamento</div>
+      <div class="cl-item"><div class="cl-box"></div><span>Tutor foi avisado</span></div>
+      <div class="cl-item"><div class="cl-box"></div><span>Confirmação enviada no grupo interno (<em>"OK — exame da [paciente] encerrado"</em>)</span></div>
+
+    </div>
+  </div>
 
   <!-- ESCALA DE TURNO -->
   <div class="section-title">Escala de Plantão — Recepção / Cobrança Noturna</div>
@@ -609,6 +754,15 @@
     </div>
   </div>
 
+  <!-- ALERTA CRÍTICO -->
+  <div class="alerta">
+    <span class="alerta-icon">⚠️</span>
+    <div>
+      <div class="alerta-title">Atualização de processo — Exames e Pacientes da Dra. Mariana</div>
+      <div class="alerta-desc">Foi identificado um caso em que um exame chegou, foi visualizado por alguém da equipe, mas o resultado <strong>não foi repassado para a Dra. Mariana</strong> e <strong>não foi comunicado ao tutor</strong>. A Dra. precisou descobrir sozinha ao revisar. O processo abaixo foi ajustado para garantir que isso não se repita.</div>
+    </div>
+  </div>
+
   <!-- REGRAS OPERACIONAIS -->
   <div class="section-title">Regras Operacionais da Clínica</div>
   <div class="rules-grid">
@@ -637,11 +791,19 @@
       </div>
     </div>
 
+    <div class="rule-card" style="border-color:#F9B233; background:#fff8e8;">
+      <span class="rule-icon">🚫</span>
+      <div>
+        <div class="rule-title" style="color:#7a4a00;">Exame visualizado ≠ exame concluído</div>
+        <div class="rule-desc">Ver o resultado não encerra o processo. Exame concluído = registrado + anexado na ficha + Dra. avisada (se paciente dela) + tutor avisado.</div>
+      </div>
+    </div>
+
     <div class="rule-card">
       <span class="rule-icon">🔬</span>
       <div>
-        <div class="rule-title">Exame tem 3 etapas obrigatórias</div>
-        <div class="rule-desc">Registrar + anexar na ficha + avisar o tutor. Faltou qualquer uma: o exame não está concluído.</div>
+        <div class="rule-title">Exame tem etapas obrigatórias</div>
+        <div class="rule-desc">Registrar + anexar na ficha + avisar Dra. (se for paciente dela) + avisar o tutor. Faltou qualquer uma: o exame não está concluído.</div>
       </div>
     </div>
 
